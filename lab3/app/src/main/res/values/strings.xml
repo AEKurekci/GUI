@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">ListViewActivity</string>
+    <string name="btnArrayName">Array Adapter</string>
+    <string name="btnCustomName">Custom Adapter</string>
+</resources>
