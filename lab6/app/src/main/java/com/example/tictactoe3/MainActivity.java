@@ -2,6 +2,7 @@ package com.example.tictactoe3;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -9,6 +10,10 @@ import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.Toast;
+import java.lang.Math;
+import java.math.*;
+
+import static java.lang.Math.abs;
 
 public class MainActivity extends AppCompatActivity {
     static final String PLAYER_1_SYMBOL = "X";
@@ -98,7 +103,30 @@ public class MainActivity extends AppCompatActivity {
 
         //check diagonals
 
+        win = true;
 
+
+        for (int rc = 0; rc < 3; rc++){
+            if(board[rc][rc] != playerValue){
+                win = false;
+                break;
+            }
+        }
+
+        if(win)
+            return playerValue;
+
+
+
+        if((abs(col - row) == 2) || ((col == 1) && (row == 1))){
+            win = true;
+            if((board[2][0] != playerValue) || (board[1][1] != playerValue) || (board[0][2] != playerValue)){
+                win = false;
+            }
+        }
+
+        if(win)
+            return playerValue;
 
         return -1;
     }
