@@ -37,6 +37,16 @@ public class MainActivity extends AppCompatActivity {
                 btn.setOnClickListener(new CellListener(i,j));
             }
         }
+
+        if(savedInstanceState != null){
+            byte[] arr = savedInstanceState.getByteArray("board");
+            player1Turn = savedInstanceState.getBoolean("turn");
+            for (int i = 0; i < 3; i++){
+                for(int j = 0; j < 3; j++){
+                    board[i][j] = arr[(i * 3) + j];
+                }
+            }
+        }
     }
 
     class CellListener implements View.OnClickListener{
@@ -135,6 +145,30 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu, menu);
         return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putByteArray("board", toArray(board));
+        //saved board information when view recreated
+        outState.putBoolean("turn",player1Turn);
+        //saved turn information when view recreated
+    }
+
+    private byte[] toArray(byte[][] matrix){
+        int row = matrix.length;
+        int col = matrix[0].length;
+
+        byte[] arr = new byte[row * col];
+
+        for (int i = 0; i < 3; i++){
+            for(int j = 0; j < 3; j++){
+                arr[(i * 3) + j] = board[i][j];
+            }
+        }
+
+        return arr;
     }
 
     void setBoardEnabled(boolean enable){
