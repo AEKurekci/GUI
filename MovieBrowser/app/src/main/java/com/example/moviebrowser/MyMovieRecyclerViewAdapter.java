@@ -56,7 +56,7 @@ public class MyMovieRecyclerViewAdapter extends RecyclerView.Adapter<MyMovieRecy
         });
 
         if(selectedIndex != -1){
-            holder.itemView.setBackgroundColor(selectedIndex == position ? Color.GREEN :
+            holder.itemView.setBackgroundColor(selectedIndex == position ? Color.rgb(69,204,204) :
                 Color.TRANSPARENT);
         }
     }
