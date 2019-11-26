@@ -1,5 +1,6 @@
 package com.example.primecalculator;
 
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -25,26 +26,67 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String maxNum = txtNum.getText().toString();
-                findPrimeLessThan(Integer.parseInt(maxNum));
+                //PrimeFinder pf = new PrimeFinder(Integer.parseInt(maxNum));
+                //pf.start();
+
+                AsyncPrimeNumber asyncPrimeNumber = new AsyncPrimeNumber();
+                asyncPrimeNumber.execute(Integer.parseInt(maxNum));
             }
         });
     }
 
-    private void findPrimeLessThan(int num) {
-        for(int i = num; i > 0; i--){
-            if(isPrime(i)){
-                txtPrime.setText(i+"");
-                return;
+
+    class AsyncPrimeNumber extends AsyncTask<Integer, Void, Integer>{
+
+        @Override
+        protected Integer doInBackground(Integer... integers) {
+            return findPrimeLessThan(integers[0]);
+        }
+        //transfering data between these methods
+        @Override
+        protected void onPostExecute(Integer integer) {
+            super.onPostExecute(integer);
+            txtPrime.setText(integer.toString());
+        }
+
+        private Integer findPrimeLessThan(int num) {
+            for(int i = num; i > 0; i--){
+                if(isPrime(i)){
+                    final int result = i;
+                    /*MainActivity.this.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            txtPrime.setText(result + "");//main thread dışındaki threadlerden UI araçlarını değiştirmemeliyiz
+                        }
+                    });*/
+                    return i;
+                }
             }
+            return null;
+        }
+
+        private boolean isPrime(int num) {
+            for(int i = num - 1; i > 1; i--){
+                if(num % i == 0){
+                    return  false;
+                }
+            }
+            return true;
         }
     }
 
-    private boolean isPrime(int num) {
-        for(int i = num - 1; i > 1; i--){
-            if(num % i == 0){
-                return  false;
-            }
+    class PrimeFinder extends Thread{
+
+        int limit;
+
+        public  PrimeFinder(int number){
+            limit = number;
+
         }
-        return true;
+
+        public void run(){
+            //findPrimeLessThan(limit);
+        }
+
     }
 }
