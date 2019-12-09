@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "309183802151",
+    "firebase_url": "https://mydb-121e7.firebaseio.com",
+    "project_id": "mydb-121e7",
+    "storage_bucket": "mydb-121e7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:309183802151:android:72e7ccf166c0a186671702",
+        "android_client_info": {
+          "package_name": "tr.edu.mu.ceng.gui.mydb"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "309183802151-evjvvfkpvliq21oe24lduf5hfsqihakd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDeG9F7iwgeI6xbcPqkxxq6RfCny9dSULE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "309183802151-evjvvfkpvliq21oe24lduf5hfsqihakd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
